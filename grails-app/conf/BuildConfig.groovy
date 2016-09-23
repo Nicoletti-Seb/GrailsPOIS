@@ -73,6 +73,14 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.10.0"
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
+
+        //Mysql connector
         compile "org.grails.plugins:mysql-connectorj:5.1.22.1"
+
+        //scss
+        compile "org.grails.plugins:compass-scss-integration:0.3.0"
+
+        //spring security
+        compile ':spring-security-core:2.0.0'
     }
 }
