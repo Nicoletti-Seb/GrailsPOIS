@@ -1,5 +1,6 @@
 package com.projetpois.user
 
+import com.projetpois.poi.Poi
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -11,6 +12,7 @@ class User implements Serializable {
 
 	transient springSecurityService
 
+	String mail
 	String username
 	String password
 	boolean enabled = true
@@ -18,8 +20,12 @@ class User implements Serializable {
 	boolean accountLocked
 	boolean passwordExpired
 
-	User(String username, String password) {
+	static hasMany = [pois: Poi]
+	static mappedBy = [pois: 'createdBy']
+
+	User(String username, String mail, String password) {
 		this()
+		this.mail = mail
 		this.username = username
 		this.password = password
 	}
@@ -45,8 +51,9 @@ class User implements Serializable {
 	static transients = ['springSecurityService']
 
 	static constraints = {
-		username blank: false, unique: true
-		password blank: false
+		mail nullable: false, mail:true, blank: false, unique: true
+		username nullable: false, blank: false, unique: true
+		password nullable: false, blank: false
 	}
 
 	static mapping = {
