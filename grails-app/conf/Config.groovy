@@ -131,8 +131,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
     '/user/**/**':      ['permitAll'],
-    '/category/**/**': ['permitAll']
+    '/category/**/**':  ['permitAll'],
+    '/poi/**/**':       ['permitAll']
 ]
 
 grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home'
+
+//logout
+grails.plugin.springsecurity.logout.postOnly = false;
