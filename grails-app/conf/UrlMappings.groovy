@@ -1,7 +1,7 @@
 class UrlMappings {
 
 	static mappings = {
-        "/$controller/$action?/$id?(.$format)?"{
+        "/$controller/$id?/$action?(.$format)?"{
             constraints {
                 // apply constraints here
             }
