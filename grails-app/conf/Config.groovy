@@ -135,8 +135,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/poi/**/**':       ['permitAll']
 ]
 
-grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/home'
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
 
 //logout
 grails.plugin.springsecurity.logout.postOnly = false;
