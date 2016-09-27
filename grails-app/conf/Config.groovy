@@ -130,7 +130,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
-    '/user/**/**':      ['permitAll']
+    '/user/**/**':      ['permitAll'],
+    '/category/**/**': ['permitAll']
 ]
 
 grails.plugins.springsecurity.successHandler.alwaysUseDefault = true
