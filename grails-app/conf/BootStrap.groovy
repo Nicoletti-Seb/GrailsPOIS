@@ -1,3 +1,4 @@
+import com.projetpois.picture.Picture
 import com.projetpois.poi.Category
 import com.projetpois.poi.Poi
 import com.projetpois.user.Role
@@ -27,17 +28,15 @@ class BootStrap {
         //Init POI
         for( Category category in categories ){
 
-                Poi poi = new Poi(name: "Poi " + categories.name, description: "Le poi" + categories.name + "!",
-                        address: "1645 Route des Lucioles, 06410 Biot",
-                        x: 7 + Math.random(), y: 43 + Math.random())
-                category.addToPois(poi);
-                testUser.addToPois(poi)
-            poi = new Poi(name: "Poi " + categories.name, description: "Le poi" + categories.name + "!",
+            Poi poi = new Poi(name: "Poi " + categories.name, description: "Le poi" + categories.name + "!",
                     address: "1645 Route des Lucioles, 06410 Biot",
                     x: 7 + Math.random(), y: 43 + Math.random())
-            category.addToPois(poi);
-            testUser.addToPois(poi)
+            poi.addToPictures(new Picture(name: "image.png").save())
 
+            category.addToPois(poi)
+            category.addToPictures(new Picture(name: "image.png").save())
+
+            testUser.addToPois(poi)
         }
 
 

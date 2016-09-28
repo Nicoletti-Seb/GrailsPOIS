@@ -73,7 +73,7 @@
 					<span id="pictures-label" class="property-label"><g:message code="poi.pictures.label" default="Pictures" /></span>
 					
 						<g:each in="${poiInstance.pictures}" var="p">
-						<span class="property-value" aria-labelledby="pictures-label"><g:link controller="picture" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+							<img src="${grailsApplication.config.images.pois.url + p.name}">
 						</g:each>
 					
 				</li>

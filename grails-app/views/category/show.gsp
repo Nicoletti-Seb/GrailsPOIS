@@ -46,7 +46,7 @@
 					<span id="pictures-label" class="property-label"><g:message code="category.pictures.label" default="Pictures" /></span>
 					
 						<g:each in="${categoryInstance.pictures}" var="p">
-						<span class="property-value" aria-labelledby="pictures-label"><g:link controller="picture" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<img src="${grailsApplication.config.images.categories.url + p.name}">
 						</g:each>
 					
 				</li>

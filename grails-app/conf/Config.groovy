@@ -121,6 +121,7 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.projetpois.user.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.projetpois.user.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.projetpois.user.Role'
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
@@ -133,10 +134,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/user/**/**':      ['permitAll'],
     '/category/**/**':  ['permitAll'],
     '/poi/**/**':       ['permitAll']
-]
 
-grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/home'
+]
 
 //logout
 grails.plugin.springsecurity.logout.postOnly = false;
+
+//Image location
+port = 9001
+grails.serverUrl = "localhost"
+images.categories.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/categories/"
+images.pois.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/pois/"
