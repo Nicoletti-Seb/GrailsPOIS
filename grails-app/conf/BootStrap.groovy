@@ -12,10 +12,12 @@ class BootStrap {
         //Roles
         Role adminRole = new Role('ROLE_ADMIN').save()
         Role userRole = new Role('ROLE_USER').save()
-        Role moderatorRole = new Role('ROLE_MODERATOR').save()
+        Role modoRole = new Role('ROLE_MODERATOR').save()
 
         //User
-        User testUser = new User('root', 'azerty@gmail.com', 'root').save()
+        User testAdmin = new User('root', 'root@gmail.com', 'root').save()
+        User testModo = new User('modo', 'modo@gmail.com', 'modo').save()
+        User testUser = new User('user', 'user@gmail.com', 'user').save()
 
         //Init Category
         List<Category> categories = new ArrayList<>()
@@ -41,19 +43,22 @@ class BootStrap {
 
 
         //Roles
-        UserRole.create testUser, adminRole, true
+        UserRole.create testAdmin, adminRole, true
+        UserRole.create testModo, modoRole, true
+        UserRole.create testUser, userRole, true
+
 
         /*          Test            */
         //Roles
-        assert User.count() == 1
+        assert User.count() == 3
         assert Role.count() == 3
-        assert UserRole.count() == 1
+        assert UserRole.count() == 3
 
         //Categories
         assert Category.count == 5
 
         //Pois
-        //assert  Poi.count == 5
+        assert  Poi.count == 5
     }
     def destroy = {
     }
