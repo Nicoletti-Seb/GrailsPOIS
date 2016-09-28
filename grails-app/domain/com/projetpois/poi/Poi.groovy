@@ -12,8 +12,8 @@ class Poi {
 
     //Location
     String address
-    int x
-    int y
+    float x
+    float y
 
     //description
     String description

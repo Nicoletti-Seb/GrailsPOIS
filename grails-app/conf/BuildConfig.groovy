@@ -79,6 +79,10 @@ grails.project.dependency.resolution = {
 
         //spring security
         compile ':spring-security-core:2.0.0'
+
+        //BootStrap Twitter css
+        compile "org.grails.plugins:twitter-bootstrap:3.3.4"
+        runtime ':twitter-bootstrap:2.3.2.2'
     }
 }
 
