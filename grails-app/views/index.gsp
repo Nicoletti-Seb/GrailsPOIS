@@ -3,6 +3,7 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
+		<asset:stylesheet src="app.css"/>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
