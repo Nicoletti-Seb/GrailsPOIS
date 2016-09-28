@@ -11,7 +11,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = ProjetPOIS // change this to alter the default package name and Maven publishing destination
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
@@ -122,6 +122,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.projetpois.us
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.projetpois.user.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.projetpois.user.Role'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/app'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
@@ -130,11 +131,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
-	'/**/favicon.ico':  ['permitAll'],
-    '/user/**/**':      ['permitAll'],
-    '/category/**/**':  ['permitAll'],
-    '/poi/**/**':       ['permitAll']
-
+	'/**/favicon.ico':  ['permitAll']
 ]
 
 //logout

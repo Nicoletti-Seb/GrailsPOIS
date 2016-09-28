@@ -1,13 +1,14 @@
 package projetpois
 
+import com.projetpois.AppController
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(MainController)
-class MainControllerSpec extends Specification {
+@TestFor(AppController)
+class AppControllerSpec extends Specification {
 
     def setup() {
     }

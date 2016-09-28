@@ -1,3 +1,5 @@
+import grails.plugin.springsecurity.LoginController
+
 class UrlMappings {
 
 	static mappings = {
@@ -7,7 +9,8 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/"(controller: "login", action: "auth")
+        "/app"(controller: "app", action: "index")
         "500"(view:'/error')
 	}
 }
