@@ -16,17 +16,22 @@
     <!-- Style -->
     <asset:stylesheet src="application.css"/>
 
-    <!-- Script -->
-    <asset:javascript src="application.js"/>
-
     <g:layoutHead/>
 </head>
 <body>
-    <g:applyLayout name="LayoutNav"/>
+
     <div class="wrapper">
-        <g:layoutBody/>
+        <!-- HEADER -->
+        <g:applyLayout name="LayoutHeader"/>
+
+        <!-- CONTENT -->
+        <section class="content-wrapper">
+            <g:layoutBody/>
+        </section>
+
+        <!-- FOOTER -->
+        <g:applyLayout name="LayoutFooter"/>
     </div>
-    <g:applyLayout name="LayoutFooter"/>
 
     <asset:javascript src="application.js"/>
 </body>
