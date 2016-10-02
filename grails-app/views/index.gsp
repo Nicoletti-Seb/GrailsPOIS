@@ -13,7 +13,7 @@
 			<nav class="navbar nav_category">
 				<details class="category" >
 					<summary class="title-category">Catégorie</summary>
-					<ul>
+					<ul class="list-pois">
 						<li class="poi"><a href="#">Poi 1</a></li>
 						<li class="poi"><a href="#">Poi 2</a></li>
 						<li class="poi"><a href="#">Poi 3</a></li>
@@ -21,7 +21,7 @@
 				</details>
 				<details class="category" >
 					<summary class="title-category">Catégorie2</summary>
-					<ul>
+					<ul class="list-pois">
 						<li class="poi"><a href="#">Poi 1</a></li>
 						<li class="poi"><a href="#">Poi 2</a></li>
 						<li class="poi"><a href="#">Poi 3</a></li>
@@ -29,7 +29,7 @@
 				</details>
 				<details class="category" >
 					<summary class="title-category">Catégorie3</summary>
-					<ul>
+					<ul class="list-pois">
 						<li class="poi"><a href="#">Poi 1</a></li>
 						<li class="poi"><a href="#">Poi 2</a></li>
 						<li class="poi"><a href="#">Poi 3</a></li>
