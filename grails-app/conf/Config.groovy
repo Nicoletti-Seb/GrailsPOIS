@@ -142,3 +142,6 @@ port = 9001
 grails.serverUrl = "localhost"
 images.categories.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/categories/"
 images.pois.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/pois/"
+
+//API google map
+API_KEY = "AIzaSyCYTyaLFuT9SFOS6Lh1iqaTQzfeJvmcXLg";

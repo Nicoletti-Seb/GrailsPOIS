@@ -19,7 +19,6 @@
     <g:layoutHead/>
 </head>
 <body>
-
     <div class="wrapper">
         <!-- HEADER -->
         <g:applyLayout name="LayoutHeader"/>
@@ -32,8 +31,6 @@
         <!-- FOOTER -->
         <g:applyLayout name="LayoutFooter"/>
     </div>
-
-    <asset:javascript src="application.js"/>
 </body>
 </html>
 

@@ -11,11 +11,17 @@
 //= require bootstrap
 
 if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$(document).ajaxStart(function(){
-			$('#spinner').fadeIn();
-		}).ajaxStop(function(){
-			$('#spinner').fadeOut();
-		});
-	})(jQuery);
+	$(document).ready(function () {
+		/* to completed */
+	});
+}
+
+
+function initMap() {
+	var mapCanvas = document.querySelector(".index-container > .map");
+	var mapOptions = {
+		center: new google.maps.LatLng(46.8, 2.8),
+		zoom: 6
+	}
+	var map = new google.maps.Map(mapCanvas, mapOptions);
 }
