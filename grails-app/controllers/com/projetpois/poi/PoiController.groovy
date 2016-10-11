@@ -1,11 +1,12 @@
 package com.projetpois.poi
 
-
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
+@Secured(['permitAll'])
 class PoiController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -17,6 +18,10 @@ class PoiController {
 
     def show(Poi poiInstance) {
         respond poiInstance
+    }
+
+    def list(){
+        respond Poi.list()
     }
 
     def create() {

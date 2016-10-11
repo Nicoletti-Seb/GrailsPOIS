@@ -9,19 +9,21 @@
 //= require_tree .
 //= require_self
 //= require bootstrap
+//= require map
 
-if (typeof jQuery !== 'undefined') {
-	$(document).ready(function () {
-		/* to completed */
-	});
-}
-
+$(document).ready(function () {
+	/* to completed */
+});
 
 function initMap() {
 	var mapCanvas = document.querySelector(".index-container > .map");
-	var mapOptions = {
-		center: new google.maps.LatLng(46.8, 2.8),
-		zoom: 6
-	}
-	var map = new google.maps.Map(mapCanvas, mapOptions);
+	var map = new Map(mapCanvas);
+
+
+	$.get('http://localhost:8080/ProjetPOIS/pois.json', null,
+			function onGetPois(data){
+				for(var i in data){
+					map.addMarker(data[i]);
+				}
+			}, 'json');
 }

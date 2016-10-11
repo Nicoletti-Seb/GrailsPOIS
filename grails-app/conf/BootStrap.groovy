@@ -30,7 +30,7 @@ class BootStrap {
         //Init POI
         for( Category category in categories ){
 
-            Poi poi = new Poi(name: "Poi " + categories.name, description: "Le poi" + categories.name + "!",
+            Poi poi = new Poi(name: "Poi " + category.name, description: "Le poi" + category.name + "!",
                     address: "1645 Route des Lucioles, 06410 Biot",
                     x: 7 + Math.random(), y: 43 + Math.random())
             poi.addToPictures(new Picture(name: "image.png").save())

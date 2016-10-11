@@ -9,32 +9,20 @@
 		<title>POIs App</title>
 	</head>
 	<body>
+		<!-- Categories -->
 		<div class="index-container">
 			<nav class="navbar nav_category">
-				<details class="category" >
-					<summary class="title-category">Catégorie</summary>
-					<ul class="list-pois">
-						<li class="poi"><a href="#">Poi 1</a></li>
-						<li class="poi"><a href="#">Poi 2</a></li>
-						<li class="poi"><a href="#">Poi 3</a></li>
-					</ul>
-				</details>
-				<details class="category" >
-					<summary class="title-category">Catégorie2</summary>
-					<ul class="list-pois">
-						<li class="poi"><a href="#">Poi 1</a></li>
-						<li class="poi"><a href="#">Poi 2</a></li>
-						<li class="poi"><a href="#">Poi 3</a></li>
-					</ul>
-				</details>
-				<details class="category" >
-					<summary class="title-category">Catégorie3</summary>
-					<ul class="list-pois">
-						<li class="poi"><a href="#">Poi 1</a></li>
-						<li class="poi"><a href="#">Poi 2</a></li>
-						<li class="poi"><a href="#">Poi 3</a></li>
-					</ul>
-				</details>
+				<g:each in="${categories}" var="c">
+					<details class="category" >
+						<summary class="title-category">${c.name}</summary>
+						<ul class="list-pois">
+							<g:each in="${c.pois}" var="poi">
+								<li class="poi"><a href="#">${poi.name}</a></li>
+							</g:each>
+						</ul>
+					</details>
+				</g:each>
+
 			</nav>
 			<div class="map"></div>
 		</div>
