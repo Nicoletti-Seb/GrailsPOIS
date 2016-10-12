@@ -15,9 +15,38 @@ $(document).ready(function () {
 	/* to completed */
 });
 
+function onMarkerClickEvent(ev){
+	console.log("Click: " , ev, " ", this);
+}
+
+function onMarkerStartDragEvent(ev){
+	this.prevLatLng = ev.latLng;
+}
+
+function onMarkerEndDragEvent(ev){
+	$.ajax({
+		url: " http://localhost:8080/ProjetPOIS/pois/" + this.poi.id + ".json",
+		method: "PUT",
+		contentType: "application/json",
+		data: JSON.stringify({x: ev.latLng.lng(), y: ev.latLng.lat()}),
+		success: function onSuccessUpdateMarker(data){
+			console.log("Success ", data);
+			this.poi = data;
+		}.bind(this),
+		error: function onErrorUpdateMarker(err){
+			console.error(err);
+			this.setPosition(this.prevLatLng);
+		}.bind(this)
+	});
+}
+
 function initMap() {
 	var mapCanvas = document.querySelector(".index-container > .map");
-	var map = new Map(mapCanvas);
+	var map = new Map(mapCanvas, {
+		markerClickEvent: onMarkerClickEvent,
+		markerStartDragEvent: onMarkerStartDragEvent,
+		markerEndDragEvent: onMarkerEndDragEvent
+	});
 
 
 	$.get('http://localhost:8080/ProjetPOIS/pois.json', null,
