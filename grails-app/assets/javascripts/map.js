@@ -35,7 +35,10 @@ var Map = (function ClassMap(){
             position: new google.maps.LatLng(poi.y, poi.x),
             map: map,
             title: poi.name,
-            draggable:true
+            draggable:true,
+            infowindow: new google.maps.InfoWindow({
+                maxWidth: 350
+            })
         });
 
         // Event Listener

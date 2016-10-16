@@ -27,7 +27,21 @@
 			<div class="map"></div>
 		</div>
 
-		<!-- Google Map -->
+
+		<section class="hide panels">
+			<!-- Info marker -->
+			<section class="info-marker">
+				<header class="info-header" >
+					<h1 class="title"></h1>
+				</header>
+				<section class="info-content" >
+					<h2 class="address"></h2>
+					<p class="description"></p>
+				</section>
+			</section>
+		</section>
+
+		<!-- Scripts -->
 		<asset:javascript src="index.js"/>
 		<script src="https://maps.googleapis.com/maps/api/js?key=${grailsApplication.config.API_KEY}&callback=initMap"></script>
 	</body>

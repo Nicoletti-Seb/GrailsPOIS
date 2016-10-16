@@ -15,8 +15,23 @@ $(document).ready(function () {
 	/* to completed */
 });
 
-function onMarkerClickEvent(ev){
-	console.log("Click: " , ev, " ", this);
+// MARKERS FUNCTIONS
+function createContentInfoMarker(marker){
+	var content = $('.panels .info-marker').clone();
+    content.find('.info-header .title').text(marker.poi.name).end()
+		    .find(".info-content .address").text(marker.poi.address).end()
+            .find(".info-content .description").text(marker.poi.description);
+
+    console.log(content.html());
+	return content.html();
+}
+
+function onMarkerClickEvent(){
+	if( !this.infowindow.getContent() ){
+		this.infowindow.setContent(createContentInfoMarker(this));
+	}
+
+	this.infowindow.open(this.getMap(), this);
 }
 
 function onMarkerStartDragEvent(ev){
@@ -30,7 +45,6 @@ function onMarkerEndDragEvent(ev){
 		contentType: "application/json",
 		data: JSON.stringify({x: ev.latLng.lng(), y: ev.latLng.lat()}),
 		success: function onSuccessUpdateMarker(data){
-			console.log("Success ", data);
 			this.poi = data;
 		}.bind(this),
 		error: function onErrorUpdateMarker(err){
@@ -39,6 +53,7 @@ function onMarkerEndDragEvent(ev){
 		}.bind(this)
 	});
 }
+// END MARKERS FUNCTIONS
 
 function initMap() {
 	var mapCanvas = document.querySelector(".index-container > .map");
@@ -48,7 +63,7 @@ function initMap() {
 		markerEndDragEvent: onMarkerEndDragEvent
 	});
 
-
+	//Init marker
 	$.get('http://localhost:8080/ProjetPOIS/pois.json', null,
 			function onGetPois(data){
 				for(var i in data){

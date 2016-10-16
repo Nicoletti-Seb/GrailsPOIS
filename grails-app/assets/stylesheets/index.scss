@@ -1,5 +1,5 @@
 
-
+/* content index */
 .index-container{
   display: flex;
   flex-direction: row;
@@ -54,6 +54,17 @@
     min-height: 500px;
   }
 
+}
+
+/* Panels */
+.info-content{
+  .address{
+    font-size: 20px;
+  }
+}
+
+.hide{
+  display: none;
 }
 
 @media screen and (max-width: 900px) {
