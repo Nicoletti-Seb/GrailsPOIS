@@ -12,15 +12,12 @@
  */
 
 var Map = (function ClassMap(){
-    var el = null; // map container
-    var opt = null;
     var markers = [];
-    var map = null;
 
     var MapObject = function MapObject(element, options){
-        el = element;
-        opt = options;
-        map = new google.maps.Map(el, getMapOptions());
+        this.el = element;
+        this.opt = options;
+        this.mapApi = new google.maps.Map(this.el, getMapOptions());
     }
 
     function getMapOptions(){
@@ -33,18 +30,21 @@ var Map = (function ClassMap(){
     function addMarker(poi){
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(poi.y, poi.x),
-            map: map,
+            map: this.mapApi,
             title: poi.name,
             draggable:true,
-            infowindow: new google.maps.InfoWindow({
+            infoWindow: new google.maps.InfoWindow({
                 maxWidth: 350
             })
         });
 
         // Event Listener
-        if(opt.markerClickEvent) google.maps.event.addListener(marker, 'click', opt.markerClickEvent);
-        if(opt.markerStartDragEvent) google.maps.event.addListener(marker, 'dragstart', opt.markerStartDragEvent);
-        if(opt.markerEndDragEvent) google.maps.event.addListener(marker, 'dragend', opt.markerEndDragEvent);
+        if(this.opt.markerClickEvent)
+            google.maps.event.addListener(marker, 'click', this.opt.markerClickEvent);
+        if(this.opt.markerStartDragEvent)
+            google.maps.event.addListener(marker, 'dragstart', this.opt.markerStartDragEvent);
+        if(this.opt.markerEndDragEvent)
+            google.maps.event.addListener(marker, 'dragend', this.opt.markerEndDragEvent);
 
         marker.poi = poi;
         markers.push(marker);
@@ -74,13 +74,15 @@ var Map = (function ClassMap(){
         return true;
     }
 
+    function trigger(obj, nameEvent){
+        new google.maps.event.trigger( obj, nameEvent );
+    }
+
     MapObject.prototype = {
-        el: el,
-        map: map,
-        options: opt,
         getMarker: getMarker,
         addMarker: addMarker,
-        removeMarker: removeMarker
+        removeMarker: removeMarker,
+        trigger:trigger
     };
 
     return MapObject;

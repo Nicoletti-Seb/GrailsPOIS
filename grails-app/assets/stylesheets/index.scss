@@ -37,10 +37,19 @@
         box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 
         .poi{
+          position: relative;;
           color: black;
           list-style: none;
           margin-left: 20px;
           padding: 3px 0 0 5px;
+
+          .target_marker{
+            position: absolute;
+            font-size: 20px;
+            right: 10px;
+            top: 2px;
+            cursor: pointer;
+          }
         }
       }
 
@@ -64,6 +73,10 @@
 }
 
 .hide{
+  display: none;
+}
+
+summary::-webkit-details-marker {
   display: none;
 }
 

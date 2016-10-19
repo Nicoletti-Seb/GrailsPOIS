@@ -11,10 +11,6 @@
 //= require bootstrap
 //= require map
 
-$(document).ready(function () {
-	/* to completed */
-});
-
 // MARKERS FUNCTIONS
 function createContentInfoMarker(marker){
 	var content = $('.panels .info-marker').clone();
@@ -22,16 +18,21 @@ function createContentInfoMarker(marker){
 		    .find(".info-content .address").text(marker.poi.address).end()
             .find(".info-content .description").text(marker.poi.description);
 
-    console.log(content.html());
 	return content.html();
 }
 
 function onMarkerClickEvent(){
-	if( !this.infowindow.getContent() ){
-		this.infowindow.setContent(createContentInfoMarker(this));
+    //check if the window is already open
+    if(this.infoWindow.getMap()){
+        this.infoWindow.close();
+        return;
+    }
+
+	if( !this.infoWindow.getContent() ){
+		this.infoWindow.setContent(createContentInfoMarker(this));
 	}
 
-	this.infowindow.open(this.getMap(), this);
+	this.infoWindow.open(this.getMap(), this);
 }
 
 function onMarkerStartDragEvent(ev){
@@ -70,4 +71,19 @@ function initMap() {
 					map.addMarker(data[i]);
 				}
 			}, 'json');
+
+	//Init listener
+	$('.target_marker').click(function onClickTargetMarker(ev){
+		var idPoi = $(ev.currentTarget).data('poi');
+		var markeur = map.getMarker(idPoi);
+
+		//Zoom on marker
+		map.mapApi.setZoom(8);
+		map.mapApi.setCenter(markeur.getPosition());
+
+		//Open infoWindow
+		if(!markeur.infoWindow.getMap()){
+			map.trigger(markeur, 'click');
+		}
+	});
 }

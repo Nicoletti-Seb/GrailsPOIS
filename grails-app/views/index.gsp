@@ -9,21 +9,25 @@
 		<title>POIs App</title>
 	</head>
 	<body>
-		<!-- Categories -->
 		<div class="index-container">
+			<!-- Categories -->
 			<nav class="navbar nav_category">
 				<g:each in="${categories}" var="c">
 					<details class="category" >
 						<summary class="title-category">${c.name}</summary>
 						<ul class="list-pois">
 							<g:each in="${c.pois}" var="poi">
-								<li class="poi"><a href="#">${poi.name}</a></li>
+								<li class="poi">
+									<a href="#">${poi.name}</a>
+									<i class="glyphicon glyphicon-screenshot target_marker" data-poi="${poi.id}"></i>
+								</li>
 							</g:each>
 						</ul>
 					</details>
 				</g:each>
 
 			</nav>
+			<!-- map -->
 			<div class="map"></div>
 		</div>
 
