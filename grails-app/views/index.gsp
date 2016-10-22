@@ -13,13 +13,13 @@
 			<!-- Categories -->
 			<nav class="navbar nav_category">
 				<g:each in="${categories}" var="c">
-					<details class="category" >
+					<details class="category" data-category="${c.id}">
 						<summary class="title-category">${c.name}</summary>
 						<ul class="list-pois">
 							<g:each in="${c.pois}" var="poi">
-								<li class="poi">
+								<li class="poi" draggable="true" data-poi="${poi.id}">
 									<a href="#">${poi.name}</a>
-									<i class="glyphicon glyphicon-screenshot target_marker" data-poi="${poi.id}"></i>
+									<i class="glyphicon glyphicon-screenshot target_marker"></i>
 								</li>
 							</g:each>
 						</ul>

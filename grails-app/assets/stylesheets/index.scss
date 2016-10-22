@@ -12,6 +12,12 @@
     width: 30%;
     background-color: #f0f0fa;
 
+    .category[open]{
+      .title-category{
+        background-color: #0089ff;
+      }
+    }
+
     .category{
       width: 100%;
       margin: 5px auto;
@@ -28,7 +34,7 @@
       }
 
       .title-category:hover{
-        background-color: #204d74;
+        background-color: #0089ff;
       }
 
       .list-pois{

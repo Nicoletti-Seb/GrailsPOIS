@@ -56,6 +56,79 @@ function onMarkerEndDragEvent(ev){
 }
 // END MARKERS FUNCTIONS
 
+// LISTENER
+
+function onClickTargetMarker(ev){
+	var map = ev.data.map;
+	var idPoi = $(ev.currentTarget).parent().data('poi');
+	var markeur = map.getMarker(idPoi);
+
+	//Zoom on marker
+	map.mapApi.setZoom(8);
+	map.mapApi.setCenter(markeur.getPosition());
+
+	//Open infoWindow
+	if(!markeur.infoWindow.getMap()){
+		map.trigger(markeur, 'click');
+	}
+}
+
+function onDragStart(ev){
+    var $el = $(ev.target);
+    if(!$el.hasClass('poi')){
+        return false;// stop propagation
+    }
+    ev.originalEvent.dataTransfer.setData('idPoi', $el.data('poi'));
+}
+
+function onDragOver(ev){
+    ev.preventDefault();
+}
+
+function onDrop(ev){
+    ev.preventDefault();
+
+    var $target = $(ev.target);
+
+    // Identify the destination
+    var $listDest = null;
+    if($target.hasClass('poi')){
+        $listDest = $(ev.target).parent();
+    }
+    else if($target.hasClass('title-category')){
+        $listDest = $(ev.target).parent().find('.list-pois');
+    }
+    else{
+        return;
+    }
+
+    //Hide the old element and add the new element
+    var idPoi = ev.originalEvent.dataTransfer.getData('idPoi');
+    var $elPoi = $('.nav_category .poi[data-poi=' + idPoi + ']');
+    var idNewCategory = $listDest.parent().data('category');
+    var $newElPoi = $elPoi.clone()
+    $listDest.append($newElPoi);
+    $elPoi.addClass('hide');
+
+    $.ajax({
+        url: " http://localhost:8080/ProjetPOIS/pois/" + idPoi,
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({category:{id:idNewCategory}}),
+        success: function onSuccessUpdateCategoryPoi(){
+            $elPoi.remove();
+        },
+        error: function onErrorUpdateMarker(err){
+            console.error(err);
+            $newElPoi.remove();
+            $elPoi.removeClass('hide');
+        }
+    });
+}
+
+
+//END LISTENER
+
 function initMap() {
 	var mapCanvas = document.querySelector(".index-container > .map");
 	var map = new Map(mapCanvas, {
@@ -73,17 +146,12 @@ function initMap() {
 			}, 'json');
 
 	//Init listener
-	$('.target_marker').click(function onClickTargetMarker(ev){
-		var idPoi = $(ev.currentTarget).data('poi');
-		var markeur = map.getMarker(idPoi);
+	$('.nav_category').on( 'click.target_marker',
+		'.target_marker',  {map: map}, onClickTargetMarker);
 
-		//Zoom on marker
-		map.mapApi.setZoom(8);
-		map.mapApi.setCenter(markeur.getPosition());
-
-		//Open infoWindow
-		if(!markeur.infoWindow.getMap()){
-			map.trigger(markeur, 'click');
-		}
-	});
+	$('.nav_category').on({
+			'dragstart': onDragStart,
+			'dragover': onDragOver,
+			'drop':onDrop
+		});
 }
