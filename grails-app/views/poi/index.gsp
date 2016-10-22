@@ -20,7 +20,7 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-striped">
 			<thead>
 					<tr>
 					
@@ -28,13 +28,9 @@
 					
 						<g:sortableColumn property="address" title="${message(code: 'poi.address.label', default: 'Address')}" />
 					
-						<g:sortableColumn property="description" title="${message(code: 'poi.description.label', default: 'Description')}" />
-					
 						<th><g:message code="poi.createdBy.label" default="Created By" /></th>
-					
+
 						<th><g:message code="poi.category.label" default="Category" /></th>
-					
-						<g:sortableColumn property="x" title="${message(code: 'poi.x.label', default: 'X')}" />
 					
 					</tr>
 				</thead>
@@ -46,18 +42,19 @@
 					
 						<td>${fieldValue(bean: poiInstance, field: "address")}</td>
 					
-						<td>${fieldValue(bean: poiInstance, field: "description")}</td>
+						<td><g:link controller="user" action="show" id="${poiInstance.createdBy.id}">
+							${fieldValue(bean: poiInstance, field: "createdBy.username")}
+						</g:link></td>
 					
-						<td>${fieldValue(bean: poiInstance, field: "createdBy")}</td>
-					
-						<td>${fieldValue(bean: poiInstance, field: "category")}</td>
-					
-						<td>${fieldValue(bean: poiInstance, field: "x")}</td>
+						<td><g:link controller="category" action="show" id="${poiInstance.category.id}">
+							${fieldValue(bean: poiInstance, field: "category.name")}
+						</g:link></td>
 					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
+
 			<div class="pagination">
 				<g:paginate total="${poiInstanceCount ?: 0}" />
 			</div>

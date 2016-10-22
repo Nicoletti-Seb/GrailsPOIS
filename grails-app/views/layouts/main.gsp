@@ -15,6 +15,8 @@
 
     <!-- Style -->
     <asset:stylesheet src="application.css"/>
+    <!-- Js -->
+    <asset:javascript src="application.js"/>
 
     <g:layoutHead/>
 </head>
