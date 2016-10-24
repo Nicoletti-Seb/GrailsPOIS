@@ -30,15 +30,17 @@ class BootStrap {
         //Init POI
         for( Category category in categories ){
 
-            Poi poi = new Poi(name: "Poi " + category.name, description: "Le poi" + category.name + "!",
-                    address: "1645 Route des Lucioles, 06410 Biot",
-                    x: 7 + Math.random(), y: 43 + Math.random())
-            poi.addToPictures(new Picture(name: "image.png").save())
+            for (int i = 0; i < 10; i++) {
+                Poi poi = new Poi(name: "Poi " + category.name + "_" + i, description: "Le poi" + category.name + "_" +i + "!",
+                        address: "1645 Route des Lucioles, 06410 Biot",
+                        x: 7 + Math.random(), y: 43 + Math.random())
+                poi.addToPictures(new Picture(name: "image.png").save())
 
-            category.addToPois(poi)
-            category.addToPictures(new Picture(name: "image.png").save())
+                category.addToPois(poi)
+                category.addToPictures(new Picture(name: "image.png").save())
 
-            testUser.addToPois(poi)
+                testUser.addToPois(poi)
+            }
         }
 
 
@@ -58,7 +60,7 @@ class BootStrap {
         assert Category.count == 5
 
         //Pois
-        assert  Poi.count == 5
+        assert  Poi.count == 50
     }
     def destroy = {
     }
