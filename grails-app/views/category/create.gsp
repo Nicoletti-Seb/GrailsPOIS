@@ -50,7 +50,7 @@
             <div class="well">
                 <fieldset class="buttons">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <g:submitButton name="create" class="save"
+                        <g:submitButton name="create" class="save btn btn-default btn-primary"
                                         value="${message(code: 'default.button.create.label', default: 'Create')}"/>
                     </div>
                 </fieldset>
