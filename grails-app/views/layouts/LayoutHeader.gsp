@@ -11,27 +11,9 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">POI<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><g:link controller="poi" action="index">Rechercher</g:link></li>
-                            <li><g:link controller="poi" id="index" action="create">Ajouter</g:link></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><g:link controller="category" action="index">Rechercher</g:link></li>
-                            <li><g:link controller="category" id="index" action="create">Ajouter</g:link></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Utilisateurs<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><g:link controller="user" action="index">Rechercher</g:link></li>
-                            <li><g:link controller="user" id="index" action="create">Ajouter</g:link></li>
-                        </ul>
-                    </li>
+                    <li><g:link controller="poi" action="index">POI</g:link></li>
+                    <li><g:link controller="category" action="index">Catégories</g:link></li>
+                    <li><g:link controller="user" action="index">Utilisateurs</g:link></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <sec:ifLoggedIn>
