@@ -3,8 +3,8 @@
 function createContentInfoMarker(marker){
 	var content = $('.panels .info-marker').clone();
     content.find('.info-header .title').text(marker.poi.name).end()
-		    .find(".info-content .address").text(marker.poi.address).end()
-            .find(".info-content .description").text(marker.poi.description);
+		    .find('.info-content .address').text(marker.poi.address).end()
+            .find('.info-content .description').text(marker.poi.description);
 
 	return content.html();
 }
@@ -29,9 +29,9 @@ function onMarkerStartDragEvent(ev){
 
 function onMarkerEndDragEvent(ev){
 	$.ajax({
-		url: " http://localhost:8080/ProjetPOIS/pois/" + this.poi.id + ".json",
-		method: "PUT",
-		contentType: "application/json",
+		url: 'http://localhost:8080/ProjetPOIS/poi/' + this.poi.id + '/update.json',
+		method: 'PUT',
+		contentType: 'application/json',
 		data: JSON.stringify({x: ev.latLng.lng(), y: ev.latLng.lat()}),
 		success: function onSuccessUpdateMarker(data){
 			this.poi = data;
@@ -99,9 +99,9 @@ function onDrop(ev){
     $elPoi.addClass('hide');
 
     $.ajax({
-        url: " http://localhost:8080/ProjetPOIS/pois/" + idPoi,
-        method: "PUT",
-        contentType: "application/json",
+        url: 'http://localhost:8080/ProjetPOIS/poi/' + idPoi + '/update.json',
+        method: 'PUT',
+        contentType: 'application/json',
         data: JSON.stringify({category:{id:idNewCategory}}),
         success: function onSuccessUpdateCategoryPoi(){
             $elPoi.remove();
@@ -118,7 +118,7 @@ function onDrop(ev){
 //END LISTENER
 
 function initMap() {
-	var mapCanvas = document.querySelector(".index-container > .map");
+	var mapCanvas = document.querySelector('.index-container > .map');
 	var map = new Map(mapCanvas, {
 		markerClickEvent: onMarkerClickEvent,
 		markerStartDragEvent: onMarkerStartDragEvent,
@@ -126,7 +126,7 @@ function initMap() {
 	});
 
 	//Init marker
-	$.get('http://localhost:8080/ProjetPOIS/pois.json', null,
+	$.get('http://localhost:8080/ProjetPOIS/poi/list.json', null,
 			function onGetPois(data){
 				for(var i in data){
 					map.addMarker(data[i]);

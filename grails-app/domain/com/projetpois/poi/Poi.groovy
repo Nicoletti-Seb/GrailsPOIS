@@ -7,7 +7,6 @@ import grails.rest.Resource
 /**
  * Created by 53js-Seb on 26/09/2016.
  */
-@Resource
 class Poi {
     //Name
     String name
