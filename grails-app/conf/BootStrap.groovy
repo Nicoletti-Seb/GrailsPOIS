@@ -33,7 +33,7 @@ class BootStrap {
             for (int i = 0; i < 10; i++) {
                 Poi poi = new Poi(name: "Poi " + category.name + "_" + i, description: "Le poi" + category.name + "_" +i + "!",
                         address: "1645 Route des Lucioles, 06410 Biot",
-                        x: 7 + Math.random(), y: 43 + Math.random())
+                        x: 0 + Math.random()*5, y: 45 + Math.random()*5)
                 poi.addToPictures(new Picture(name: "image.png").save())
 
                 category.addToPois(poi)
@@ -45,8 +45,8 @@ class BootStrap {
 
 
         //Roles
-        UserRole.create testAdmin, adminRole, true
-        UserRole.create testModo, modoRole, true
+        UserRole.create testAdmin, adminRole
+        UserRole.create testModo, modoRole
         UserRole.create testUser, userRole, true
 
 
