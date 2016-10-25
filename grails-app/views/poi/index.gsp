@@ -62,9 +62,9 @@
             </tbody>
         </table>
 
-        <div class="pagination">
-            <g:paginate total="${poiInstanceCount ?: 0}"/>
-        </div>
+        <ul class="pagination">
+            <g:pagination total="${poiInstanceCount ?: 0}"/>
+        </ul>
     </div>
 </div>
 </body>
