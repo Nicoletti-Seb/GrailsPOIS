@@ -139,9 +139,13 @@ grails.plugin.springsecurity.logout.postOnly = false;
 
 //Image location
 port = 9001
-grails.serverUrl = "localhost"
-images.categories.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/categories/"
-images.pois.url = "http://" + grails.serverUrl + ":" + port + "/ProjetPOIS/pois/"
+grails.serverUrl = "http://localhost:" + port
+grails.serverApache = "C:/Tools/wamp64/www/ProjetPOIS"
+
+images.categories.url = grails.serverUrl + "/ProjetPOIS/categories/"
+images.categories.path = grails.serverApache + "/categories/"
+images.pois.url = grails.serverUrl + "/ProjetPOIS/pois/"
+images.pois.path = grails.serverApache + "/pois/"
 
 //API google map
 API_KEY = "AIzaSyCYTyaLFuT9SFOS6Lh1iqaTQzfeJvmcXLg";

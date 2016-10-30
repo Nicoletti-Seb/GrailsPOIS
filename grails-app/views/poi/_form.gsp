@@ -69,10 +69,12 @@
     </label>
 
     <div class="col-sm-4">
-        <g:select class="form-control" name="pictures" from="${com.projetpois.picture.Picture.list()}"
-                  multiple="multiple" optionKey="id"
-                  size="5" value="${poiInstance?.pictures*.id}"/>
+        <g:each in="${poiInstance.pictures}" var="p">
+            <img src="${grailsApplication.config.images.pois.url + p.name}">
+        </g:each>
     </div>
+
+    <input type="file" name="uploadFile"/>
 </div>
 
 <div class="form-group ${hasErrors(bean: poiInstance, field: 'x', 'error')} required">
@@ -82,7 +84,7 @@
     </label>
 
     <div class="col-sm-4">
-        <g:field name="x" class="form-control" type="number" value="${poiInstance.x}" required=""/>
+        <g:field name="x" class="form-control" type="number" pattern="[0-9]+,[0-9]+" step="any" value="${(int)poiInstance.x}" required=""/>
     </div>
 </div>
 
@@ -93,7 +95,7 @@
     </label>
 
     <div class="col-sm-4">
-        <g:field name="y" class="form-control" type="number" value="${poiInstance.y}" required=""/>
+        <g:field name="y" class="form-control" type="number" pattern="[0-9]+,[0-9]+" step="any" value="${(int)poiInstance.y}" required=""/>
     </div>
 </div>
 

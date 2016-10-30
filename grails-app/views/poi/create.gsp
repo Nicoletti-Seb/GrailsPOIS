@@ -42,7 +42,7 @@
     </div>
 
     <div id="create-poi" class="content scaffold-create" role="main">
-        <g:form class="form-horizontal" url="[resource: poiInstance, action: 'save']">
+        <g:uploadForm class="form-horizontal" url="[resource: poiInstance, action: 'save']">
             <fieldset class="form">
                 <g:render template="form"/>
             </fieldset>
@@ -55,7 +55,7 @@
                     </div>
                 </fieldset>
             </div>
-        </g:form>
+        </g:uploadForm>
     </div>
 </div>
 </body>

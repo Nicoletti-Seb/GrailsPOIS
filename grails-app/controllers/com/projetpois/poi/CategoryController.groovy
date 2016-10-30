@@ -1,5 +1,6 @@
 package com.projetpois.poi
 
+import com.projetpois.picture.Picture
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -9,7 +10,7 @@ import grails.transaction.Transactional
 @Secured(['permitAll'])
 class CategoryController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -34,6 +35,13 @@ class CategoryController {
         if (categoryInstance.hasErrors()) {
             respond categoryInstance.errors, view:'create'
             return
+        }
+
+        def f = request.getFile('uploadFile');
+        if (!f.empty) {
+            def name = f.getOriginalFilename();
+            categoryInstance.addToPictures(new Picture(name: name));
+            f.transferTo(new File(grailsApplication.config.images.categories.path + name))
         }
 
         categoryInstance.save flush:true
@@ -61,6 +69,14 @@ class CategoryController {
         if (categoryInstance.hasErrors()) {
             respond categoryInstance.errors, view:'edit'
             return
+        }
+
+        //save picture
+        def f = request.getFile('uploadFile');
+        if (!f.empty) {
+            def name = f.getOriginalFilename();
+            categoryInstance.addToPictures(new Picture(name: name));
+            f.transferTo(new File(grailsApplication.config.images.categories.path + name))
         }
 
         categoryInstance.save flush:true

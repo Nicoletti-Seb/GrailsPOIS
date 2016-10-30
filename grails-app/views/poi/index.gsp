@@ -63,7 +63,7 @@
         </table>
 
         <ul class="pagination">
-            <g:pagination total="${poiInstanceCount ?: 0}"/>
+            <g:paginate total="${poiInstanceCount ?: 0}"/>
         </ul>
     </div>
 </div>

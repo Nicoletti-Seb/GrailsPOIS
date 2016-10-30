@@ -1,5 +1,6 @@
 package com.projetpois.poi
 
+import com.projetpois.picture.Picture
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -9,7 +10,7 @@ import grails.transaction.Transactional
 @Secured(['permitAll'])
 class PoiController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -25,7 +26,7 @@ class PoiController {
     }
 
     def create() {
-        respond new Poi(params)
+        respond new Poi(params);
     }
 
     @Transactional
@@ -38,6 +39,14 @@ class PoiController {
         if (poiInstance.hasErrors()) {
             respond poiInstance.errors, view:'create'
             return
+        }
+
+        //save file
+        def f = request.getFile('uploadFile');
+        if (!f.empty) {
+            def name = f.getOriginalFilename();
+            poiInstance.addToPictures(new Picture(name: name));
+            f.transferTo(new File(grailsApplication.config.images.pois.path + name))
         }
 
         poiInstance.save flush:true
@@ -65,6 +74,13 @@ class PoiController {
         if (poiInstance.hasErrors()) {
             respond poiInstance.errors, view:'edit'
             return
+        }
+
+        def f = request.getFile('uploadFile');
+        if (!f.empty) {
+            def name = f.getOriginalFilename();
+            poiInstance.addToPictures(new Picture(name: name));
+            f.transferTo(new File(grailsApplication.config.images.pois.path + name))
         }
 
         poiInstance.save flush:true

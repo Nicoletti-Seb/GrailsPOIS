@@ -30,9 +30,12 @@
     </label>
 
     <div class="col-sm-4">
-        <g:select name="pictures" from="${com.projetpois.picture.Picture.list()}" multiple="multiple" optionKey="id"
-                  size="5" value="${categoryInstance?.pictures*.id}" class="form-control"/>
+        <g:each in="${categoryInstance.pictures}" var="c">
+            <img src="${grailsApplication.config.images.categories.url + c.name}">
+        </g:each>
     </div>
+
+    <input type="file" name="uploadFile"/>
 </div>
 
 <div class="form-group ${hasErrors(bean: categoryInstance, field: 'pois', 'error')} ">

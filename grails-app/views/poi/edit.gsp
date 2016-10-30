@@ -51,7 +51,7 @@
     </div>
 
     <div id="edit-poi" class="content scaffold-edit" role="main">
-        <g:form class="form-horizontal" url="[resource: poiInstance, action: 'update']" method="PUT">
+        <g:uploadForm class="form-horizontal" url="[resource: poiInstance, action: 'update']">
             <g:hiddenField name="version" value="${poiInstance?.version}"/>
             <fieldset class="form">
                 <g:render template="form"/>
@@ -60,11 +60,11 @@
             <div class="well">
             <fieldset class="buttons">
                 <div class="col-sm-offset-3 col-sm-9">
-            <g:actionSubmit class="save btn btn-default btn-primary" action="update"
-                            value="${message(code: 'default.button.update.label', default: 'Update')}"/>
-            </div>
+                    <g:actionSubmit name="update" class="save btn btn-default btn-primary"
+                                    value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+                </div>
         </fieldset>
-        </g:form>
+        </g:uploadForm>
     </div>
     </div>
 </body>

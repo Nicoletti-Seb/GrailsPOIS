@@ -29,7 +29,7 @@ class BootStrap {
 
         //Init POI
         for( Category category in categories ){
-
+            category.addToPictures(new Picture(name: "image.png").save())
             for (int i = 0; i < 10; i++) {
                 Poi poi = new Poi(name: "Poi " + category.name + "_" + i, description: "Le poi" + category.name + "_" +i + "!",
                         address: "1645 Route des Lucioles, 06410 Biot",
@@ -37,8 +37,6 @@ class BootStrap {
                 poi.addToPictures(new Picture(name: "image.png").save())
 
                 category.addToPois(poi)
-                category.addToPictures(new Picture(name: "image.png").save())
-
                 testUser.addToPois(poi)
             }
         }
