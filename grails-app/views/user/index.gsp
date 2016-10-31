@@ -35,8 +35,8 @@
                 <g:sortableColumn property="username"
                                   title="${message(code: 'user.username.label', default: 'Username')}"/>
 
-                <g:sortableColumn property="password"
-                                  title="${message(code: 'user.password.label', default: 'Password')}"/>
+                <!--<g:sortableColumn property="password"
+                                  title="${message(code: 'user.password.label', default: 'Password')}"/>-->
 
                 <g:sortableColumn property="accountExpired"
                                   title="${message(code: 'user.accountExpired.label', default: 'Account Expired')}"/>
@@ -58,7 +58,7 @@
 
                     <td>${fieldValue(bean: userInstance, field: "username")}</td>
 
-                    <td>${fieldValue(bean: userInstance, field: "password")}</td>
+                    <!--<td>${fieldValue(bean: userInstance, field: "password")}</td>-->
 
                     <td><g:formatBoolean boolean="${userInstance.accountExpired}"/></td>
 

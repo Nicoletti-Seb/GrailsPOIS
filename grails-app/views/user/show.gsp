@@ -62,7 +62,7 @@
                 </div>
             </g:if>
 
-            <g:if test="${userInstance?.password}">
+            <!--<g:if test="${userInstance?.password}">
                 <div class="form-group">
                     <label for="password-label" class="col-sm-2 col-sm-offset-3">
                         <g:message code="user.password.label" default="Password"/>
@@ -72,7 +72,7 @@
                         <g:fieldValue bean="${userInstance}" field="password"/>
                     </div>
                 </div>
-            </g:if>
+            </g:if>-->
 
             <g:if test="${userInstance?.accountExpired}">
                 <div class="form-group">
