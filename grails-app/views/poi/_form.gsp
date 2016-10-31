@@ -63,20 +63,6 @@
     </div>
 </div>
 
-<div class="form-group ${hasErrors(bean: poiInstance, field: 'pictures', 'error')} ">
-    <label for="pictures" class="col-sm-3 control-label">
-        <g:message code="poi.pictures.label" default="Pictures"/>
-    </label>
-
-    <div class="col-sm-4">
-        <g:each in="${poiInstance.pictures}" var="p">
-            <img src="${grailsApplication.config.images.pois.url + p.name}">
-        </g:each>
-    </div>
-
-    <input type="file" name="uploadFile"/>
-</div>
-
 <div class="form-group ${hasErrors(bean: poiInstance, field: 'x', 'error')} required">
     <label for="x" class="col-sm-3 control-label">
         <g:message code="poi.x.label" default="X"/>
@@ -97,5 +83,21 @@
     <div class="col-sm-4">
         <g:field name="y" class="form-control" type="number" pattern="[0-9]+,[0-9]+" step="any" value="${(int)poiInstance.y}" required=""/>
     </div>
+</div>
+
+<div class="form-group ${hasErrors(bean: poiInstance, field: 'pictures', 'error')} ">
+    <label for="pictures" class="col-sm-3 control-label">
+        <g:message code="poi.pictures.label" default="Pictures"/>
+    </label>
+    <input type="file" name="uploadFile"/>
+</div>
+
+<div class="container_pictures">
+    <g:each in="${poiInstance.pictures}" var="p">
+        <div class="picture_form">
+            <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
+            <img class="picture" src="${grailsApplication.config.images.pois.url + p.name}">
+        </div>
+    </g:each>
 </div>
 

@@ -64,13 +64,11 @@
 
             <g:if test="${categoryInstance?.pictures}">
                 <div class="form-group">
-                    <label for="pictures-label" class="col-sm-2 col-sm-offset-3">
-                        <g:message code="category.pictures.label" default="Pictures"/>
-                    </label>
-
-                    <div class="col-sm-4">
+                    <div class="container_pictures">
                         <g:each in="${categoryInstance.pictures}" var="p">
-                            <img src="${grailsApplication.config.images.categories.url + p.name}">
+                            <div class="picture_form">
+                                <img class="picture" src="${grailsApplication.config.images.categories.url + p.name}">
+                            </div>
                         </g:each>
                     </div>
                 </div>

@@ -104,13 +104,12 @@
 
             <g:if test="${poiInstance?.pictures}">
                 <div class="form-group">
-                    <label for="pictures-label" class="col-sm-2 col-sm-offset-3">
-                        <g:message code="poi.pictures.label" default="Pictures"/>
-                    </label>
-
-                    <div class="col-sm-4">
+                    <div class="container_pictures">
                         <g:each in="${poiInstance.pictures}" var="p">
-                            <img src="${grailsApplication.config.images.pois.url + p.name}">
+                            <div class="picture_form">
+                                <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
+                                <img class="picture" src="${grailsApplication.config.images.pois.url + p.name}">
+                            </div>
                         </g:each>
                     </div>
                 </div>

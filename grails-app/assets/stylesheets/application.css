@@ -9,6 +9,7 @@
 *
 *= require main
 *= require index
+*= require form
 *= require mobile
 *= require_self
 *= require bootstrap

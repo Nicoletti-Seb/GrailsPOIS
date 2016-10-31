@@ -28,14 +28,16 @@
     <label for="pictures" class="col-sm-3 control-label">
         <g:message code="category.pictures.label" default="Pictures"/>
     </label>
-
-    <div class="col-sm-4">
-        <g:each in="${categoryInstance.pictures}" var="c">
-            <img src="${grailsApplication.config.images.categories.url + c.name}">
-        </g:each>
-    </div>
-
     <input type="file" name="uploadFile"/>
+</div>
+
+<div class="container_pictures">
+    <g:each in="${categoryInstance.pictures}" var="c">
+        <div class="picture_form">
+            <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
+            <img class="picture" src="${grailsApplication.config.images.categories.url + c.name}">
+        </div>
+    </g:each>
 </div>
 
 <div class="form-group ${hasErrors(bean: categoryInstance, field: 'pois', 'error')} ">
