@@ -10,7 +10,7 @@ import grails.transaction.Transactional
 @Secured(['permitAll'])
 class PoiController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: ["PUT", "POST"], delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -42,11 +42,13 @@ class PoiController {
         }
 
         //save file
-        def f = request.getFile('uploadFile');
-        if (!f.empty) {
-            def name = f.getOriginalFilename();
-            poiInstance.addToPictures(new Picture(name: name));
-            f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+        if(params.containsKey('uploadFile')) {
+            def f = request.getFile('uploadFile');
+            if (!f.empty) {
+                def name = f.getOriginalFilename();
+                poiInstance.addToPictures(new Picture(name: name));
+                f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+            }
         }
 
         poiInstance.save flush:true
@@ -76,12 +78,15 @@ class PoiController {
             return
         }
 
-        def f = request.getFile('uploadFile');
-        if (!f.empty) {
-            def name = f.getOriginalFilename();
-            poiInstance.addToPictures(new Picture(name: name));
-            f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+        if(params.containsKey('uploadFile')){
+            def f = request.getFile('uploadFile');
+            if (!f.empty) {
+                def name = f.getOriginalFilename();
+                poiInstance.addToPictures(new Picture(name: name));
+                f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+            }
         }
+
 
         poiInstance.save flush:true
 

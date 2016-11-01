@@ -58,14 +58,16 @@
             </fieldset>
 
             <div class="well">
-            <fieldset class="buttons">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <g:actionSubmit name="update" class="save btn btn-default btn-primary"
-                                    value="${message(code: 'default.button.update.label', default: 'Update')}"/>
-                </div>
-        </fieldset>
+                <fieldset class="buttons">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <g:actionSubmit name="update" class="save btn btn-default btn-primary"
+                                        value="${message(code: 'default.button.update.label', default: 'Update')}"/>
+                    </div>
+                </fieldset>
+            </div>
         </g:uploadForm>
     </div>
     </div>
+
 </body>
 </html>

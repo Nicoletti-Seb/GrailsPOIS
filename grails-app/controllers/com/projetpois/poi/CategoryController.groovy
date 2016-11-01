@@ -37,11 +37,13 @@ class CategoryController {
             return
         }
 
-        def f = request.getFile('uploadFile');
-        if (!f.empty) {
-            def name = f.getOriginalFilename();
-            categoryInstance.addToPictures(new Picture(name: name));
-            f.transferTo(new File(grailsApplication.config.images.categories.path + name))
+        if(params.containsKey('uploadFile')) {
+            def f = request.getFile('uploadFile');
+            if (!f.empty) {
+                def name = f.getOriginalFilename();
+                categoryInstance.addToPictures(new Picture(name: name));
+                f.transferTo(new File(grailsApplication.config.images.categories.path + name))
+            }
         }
 
         categoryInstance.save flush:true
@@ -72,11 +74,13 @@ class CategoryController {
         }
 
         //save picture
-        def f = request.getFile('uploadFile');
-        if (!f.empty) {
-            def name = f.getOriginalFilename();
-            categoryInstance.addToPictures(new Picture(name: name));
-            f.transferTo(new File(grailsApplication.config.images.categories.path + name))
+        if(params.containsKey('uploadFile')) {
+            def f = request.getFile('uploadFile');
+            if (!f.empty) {
+                def name = f.getOriginalFilename();
+                categoryInstance.addToPictures(new Picture(name: name));
+                f.transferTo(new File(grailsApplication.config.images.categories.path + name))
+            }
         }
 
         categoryInstance.save flush:true
