@@ -23,4 +23,22 @@ $(document).ready(function(){
                 });
             });
 
+    $('.confirm-password').on({
+        change: validatePassword,
+        keyup: validatePassword
+    });
+
+
 });
+
+function validatePassword(event){
+    var $password = $('.password');
+    var confirmPassword = event.currentTarget;
+
+    if($password.val() !== confirmPassword.value) {
+        confirmPassword.setCustomValidity("Passwords non identique...");
+    } else {
+        confirmPassword.setCustomValidity('');
+    }
+}
+

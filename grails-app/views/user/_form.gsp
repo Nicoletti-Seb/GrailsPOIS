@@ -31,7 +31,18 @@
     </label>
 
     <div class="col-sm-4">
-        <g:textField name="password" class="form-control" required="" value="${userInstance?.password}"/>
+        <g:field type="password" name="password" class="form-control password" required=""/>
+    </div>
+</div>
+
+<div class="form-group required">
+    <label for="password" class="col-sm-3 control-label">
+        Confirm Password
+        <span class="required-indicator">*</span>
+    </label>
+
+    <div class="col-sm-4">
+        <input type="password" class="form-control confirm-password" required=""/>
     </div>
 </div>
 

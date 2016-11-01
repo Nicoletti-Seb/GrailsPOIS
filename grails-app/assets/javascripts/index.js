@@ -55,7 +55,7 @@ function onClickTargetMarker(ev){
 	map.mapApi.setZoom(8);
 	map.mapApi.setCenter(markeur.getPosition());
 
-	//Open infoWindow
+	//Open infoWindowé
 	if(!markeur.infoWindow.getMap()){
 		map.trigger(markeur, 'click');
 	}

@@ -18,7 +18,7 @@
 						<ul class="list-pois">
 							<g:each in="${c.pois}" var="poi">
 								<li class="poi" draggable="true" data-poi="${poi.id}">
-									<a href="#">${poi.name}</a>
+									<g:link controller="poi" id="${poi.id}" action="show">${poi.name}</g:link>
 									<i class="glyphicon glyphicon-screenshot target_marker"></i>
 								</li>
 							</g:each>
