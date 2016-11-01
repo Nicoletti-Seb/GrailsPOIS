@@ -31,11 +31,11 @@
     <input type="file" name="uploadFile"/>
 </div>
 
-<div class="container_pictures">
-    <g:each in="${categoryInstance.pictures}" var="c">
-        <div class="picture_form">
+<div class="container_pictures" data-type="category">
+    <g:each in="${categoryInstance.pictures}" var="p">
+        <div class="picture_form" data-picture="${p.id}">
             <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
-            <img class="picture" src="${grailsApplication.config.images.categories.url + c.name}">
+            <img class="picture" src="${grailsApplication.config.images.categories.url + p.name}">
         </div>
     </g:each>
 </div>

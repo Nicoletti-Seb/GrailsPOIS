@@ -68,6 +68,6 @@
         </g:uploadForm>
     </div>
     </div>
-
+    <asset:javascript src="formListener.js"/>
 </body>
 </html>

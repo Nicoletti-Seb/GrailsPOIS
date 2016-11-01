@@ -2,6 +2,7 @@ package com.projetpois.poi
 
 import com.projetpois.picture.Picture
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.http.HttpStatus
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional

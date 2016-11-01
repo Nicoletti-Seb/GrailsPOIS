@@ -107,7 +107,6 @@
                     <div class="container_pictures">
                         <g:each in="${poiInstance.pictures}" var="p">
                             <div class="picture_form">
-                                <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
                                 <img class="picture" src="${grailsApplication.config.images.pois.url + p.name}">
                             </div>
                         </g:each>

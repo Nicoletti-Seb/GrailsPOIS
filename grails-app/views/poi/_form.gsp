@@ -85,18 +85,16 @@
     </div>
 </div>
 
-<div class="form-group ${hasErrors(bean: poiInstance, field: 'pictures', 'error')} ">
-    <label for="pictures" class="col-sm-3 control-label">
-        <g:message code="poi.pictures.label" default="Pictures"/>
-    </label>
+<div class="form-group">
+    <label class="col-sm-3 control-label">Pictures</label>
     <input type="file" name="uploadFile"/>
 </div>
 
-<div class="container_pictures">
+<div class="container_pictures" data-type="poi">
     <g:each in="${poiInstance.pictures}" var="p">
-        <div class="picture_form">
+        <div class="picture_form" data-picture="${p.id}">
             <span class="btn_delete_picture glyphicon glyphicon-remove"></span>
-            <img class="picture" src="${grailsApplication.config.images.pois.url + p.name}">
+            <img name="pictures" class="picture" src="${grailsApplication.config.images.pois.url + p.name}">
         </div>
     </g:each>
 </div>

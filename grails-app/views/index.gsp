@@ -24,8 +24,8 @@
 							</g:each>
 						</ul>
 					</details>
-				</g:each>
 
+				</g:each>
 			</nav>
 			<!-- map -->
 			<div class="map"></div>
