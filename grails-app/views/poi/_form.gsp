@@ -45,6 +45,7 @@
         <g:select class="form-control" id="createdBy" name="createdBy.id" from="${com.projetpois.user.User.list()}"
                   optionKey="id"
                   required=""
+                  optionValue="username"
                   value="${poiInstance?.createdBy?.id}"/>
     </div>
 </div>
@@ -59,6 +60,7 @@
         <g:select class="form-control" id="category" name="category.id" from="${com.projetpois.poi.Category.list()}"
                   optionKey="id"
                   required=""
+                  optionValue="name"
                   value="${poiInstance?.category?.id}"/>
     </div>
 </div>

@@ -48,13 +48,14 @@
     <div class="col-sm-4">
         <ul class="one-to-many">
             <g:each in="${categoryInstance?.pois ?}" var="p">
-                <li><g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+                <li><g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link></li>
             </g:each>
-            <li class="add">
-                <g:link controller="poi" action="create"
-                        params="['category.id': categoryInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
-            </li>
         </ul>
+
+        <p class="add">
+            <g:link controller="poi" action="create"
+                    params="['category.id': categoryInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
+        </p>
     </div>
 </div>
 

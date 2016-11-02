@@ -81,10 +81,14 @@
                     </label>
 
                     <div class="col-sm-4">
-                        <g:each in="${categoryInstance.pois}" var="p">
-                            <span class="property-value" aria-labelledby="pois-label">
-                            <g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link>
-                        </g:each>
+                        <ul>
+                            <g:each in="${categoryInstance.pois}" var="p">
+                                <li>
+                                    <span class="property-value" aria-labelledby="pois-label">
+                                    <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link>
+                                </li>
+                            </g:each>
+                        </ul>
                     </div>
                 </div>
             </g:if>

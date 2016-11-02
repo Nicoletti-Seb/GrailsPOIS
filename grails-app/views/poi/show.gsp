@@ -82,7 +82,7 @@
 
                     <div class="col-sm-4">
                         <g:link controller="user" action="show" id="${poiInstance?.createdBy?.id}">
-                            ${poiInstance?.createdBy?.encodeAsHTML()}
+                            ${poiInstance?.createdBy?.username}
                         </g:link>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
 
                     <div class="col-sm-4">
                         <g:link controller="category" action="show" id="${poiInstance?.category?.id}">
-                            ${poiInstance?.category?.encodeAsHTML()}
+                            ${poiInstance?.category?.name}
                         </g:link>
                     </div>
                 </div>

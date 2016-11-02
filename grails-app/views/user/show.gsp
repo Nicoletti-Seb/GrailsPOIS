@@ -129,7 +129,7 @@
                     </label>
 
                     <g:each in="${userInstance.pois}" var="p">
-                        <g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link>
+                        <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link> /
                     </g:each>
                 </div>
             </g:if>
