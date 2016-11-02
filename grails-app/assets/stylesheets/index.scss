@@ -9,8 +9,11 @@
   .nav_category {
     min-width: 200px;
     height: 100%;
+    max-height: 100%;
     width: 30%;
     background-color: #f0f0fa;
+    overflow: scroll;
+    overflow-x: hidden;
 
     .category[open]{
       .title-category{
