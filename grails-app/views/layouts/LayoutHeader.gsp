@@ -21,7 +21,7 @@
                     <sec:ifLoggedIn>
                         <li>
                             <!-- Trouver comment afficher les infos de l'utilisateur courant -->
-                            <g:link controller='user' action="show" id="1">
+                            <g:link controller='user' action="show" id="${sec.loggedInUserInfo(field:'id')}">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <sec:loggedInUserInfo field='username'/>
                             </g:link>
