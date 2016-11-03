@@ -24,11 +24,17 @@
     </div>
 </div>
 
-<div class="form-group ${hasErrors(bean: categoryInstance, field: 'pictures', 'error')} ">
+<div class="form-group picture-loader ${hasErrors(bean: categoryInstance, field: 'pictures', 'error')} ">
     <label for="pictures" class="col-sm-3 control-label">
         <g:message code="category.pictures.label" default="Pictures"/>
     </label>
-    <input type="file" name="uploadFile"/>
+    <div>
+        <span class="glyphicon glyphicon-plus-sign add-picture-loader"></span>
+        <span class="glyphicon glyphicon-minus-sign remove-picture-loader"></span>
+    </div>
+    <div class="col-sm-3 list-picture-loader">
+        <input type="file" name="uploadFile"/>
+    </div>
 </div>
 
 <div class="container_pictures" data-type="category">

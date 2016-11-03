@@ -43,12 +43,14 @@ class PoiController {
         }
 
         //save file
-        if(params.containsKey('uploadFile')) {
-            def f = request.getFile('uploadFile');
-            if (!f.empty) {
-                def name = f.getOriginalFilename();
-                poiInstance.addToPictures(new Picture(name: name));
-                f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+        if(params.containsKey('uploadFile')){
+            List fileList = request.getFiles('uploadFile');
+            fileList.each { f ->
+                if (!f.empty) {
+                    def name = f.getOriginalFilename();
+                    poiInstance.addToPictures(new Picture(name: name));
+                    f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+                }
             }
         }
 
@@ -80,14 +82,15 @@ class PoiController {
         }
 
         if(params.containsKey('uploadFile')){
-            def f = request.getFile('uploadFile');
-            if (!f.empty) {
-                def name = f.getOriginalFilename();
-                poiInstance.addToPictures(new Picture(name: name));
-                f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+            List fileList = request.getFiles('uploadFile');
+            fileList.each { f ->
+                if (!f.empty) {
+                    def name = f.getOriginalFilename();
+                    poiInstance.addToPictures(new Picture(name: name));
+                    f.transferTo(new File(grailsApplication.config.images.pois.path + name))
+                }
             }
         }
-
 
         poiInstance.save flush:true
 
