@@ -35,16 +35,16 @@
         <h1><g:message code="default.show.label" args="[entityName]"/></h1>
     </div>
 
-    <div id="show-category" class="content scaffold-show" role="main">
-        <div class="form-horizontal">
+    <div id="show-category" class="row content scaffold-show" role="main">
+        <div class="form-horizontal col-sm-4">
 
             <g:if test="${categoryInstance?.name}">
                 <div class="form-group">
-                    <label for="name-label" class="col-sm-2 col-sm-offset-3">
+                    <label for="name-label" class="col-sm-4">
                         <g:message code="category.name.label" default="Name"/>
                     </label>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                         <g:fieldValue bean="${categoryInstance}" field="name"/>
                     </div>
                 </div>
@@ -52,11 +52,11 @@
 
             <g:if test="${categoryInstance?.description}">
                 <div class="form-group">
-                    <label for="description-label" class="col-sm-2 col-sm-offset-3">
+                    <label for="description-label" class="col-sm-4">
                         <g:message code="category.description.label" default="Description"/>
                     </label>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                         <g:fieldValue bean="${categoryInstance}" field="description"/>
                     </div>
                 </div>
@@ -64,32 +64,15 @@
 
             <g:if test="${categoryInstance?.pictures}">
                 <div class="form-group">
-                    <div class="container_pictures">
-                        <g:each in="${categoryInstance.pictures}" var="p">
-                            <div class="picture_form">
-                                <img class="picture" src="${grailsApplication.config.images.categories.url + p.name}">
-                            </div>
-                        </g:each>
-                    </div>
-                </div>
-            </g:if>
+                    <!--<label for="pictures-label" class="col-sm-4">
+                <g:message code="category.pois.pictures" default="Pictures"/>
+                </label>-->
 
-            <g:if test="${categoryInstance?.pois}">
-                <div class="form-group">
-                    <label for="pois-label" class="col-sm-2 col-sm-offset-3">
-                        <g:message code="category.pois.label" default="Pois"/>
-                    </label>
-
-                    <div class="col-sm-4">
-                        <ul>
-                            <g:each in="${categoryInstance.pois}" var="p">
-                                <li>
-                                    <span class="property-value" aria-labelledby="pois-label">
-                                    <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link>
-                                </li>
-                            </g:each>
-                        </ul>
+                <g:each in="${categoryInstance.pictures}" var="p">
+                    <div class="col-sm-4 col-xs-6 picture_form">
+                        <img class="picture" src="${grailsApplication.config.images.categories.url + p.name}">
                     </div>
+                </g:each>
                 </div>
             </g:if>
 
@@ -105,7 +88,48 @@
                     </fieldset>
                 </g:form>
             </div>
+
         </div>
+
+        <div class="col-sm-8">
+            <g:if test="${categoryInstance?.pois}">
+
+                <!--<label for="pois-label" class="col-sm-2">
+                <g:message code="category.pois.label" default="Pois"/>
+                </label>
+
+                    <ul>
+                <g:each in="${categoryInstance.pois}" var="p">
+                    <li>
+                        <span class="property-value" aria-labelledby="pois-label">
+                    <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link>
+                    </li>
+                </g:each>
+                </ul>-->
+
+                <div class="index-container" id="carte-pois" data-categoryId= ${categoryInstance.id}>
+                    <div class="map"></div>
+                </div>
+
+                <section class="hide panels">
+                    <!-- Info marker -->
+                    <section class="info-marker">
+                        <header class="info-header" >
+                            <h1 class="title"></h1>
+                        </header>
+                        <section class="info-content" >
+                            <h2 class="address"></h2>
+                            <p class="description"></p>
+                        </section>
+                    </section>
+                </section>
+            </g:if>
         </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<asset:javascript src="category.js"/>
+<script src="https://maps.googleapis.com/maps/api/js?key=${grailsApplication.config.API_KEY}&callback=initMap"></script>
 </body>
 </html>

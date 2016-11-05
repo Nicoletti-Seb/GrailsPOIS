@@ -22,6 +22,10 @@ class CategoryController {
         respond categoryInstance
     }
 
+    def list() {
+        respond Category.list()
+    }
+
     def create() {
         respond new Category(params)
     }
