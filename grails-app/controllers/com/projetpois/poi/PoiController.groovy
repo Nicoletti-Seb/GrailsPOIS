@@ -8,7 +8,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'])
 class PoiController {
 
     static allowedMethods = [save: "POST", update: ["PUT", "POST"], delete: "DELETE"]
@@ -26,11 +26,13 @@ class PoiController {
         respond Poi.list()
     }
 
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def create() {
         respond new Poi(params);
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def save(Poi poiInstance) {
         if (poiInstance == null) {
             notFound()
@@ -65,11 +67,13 @@ class PoiController {
         }
     }
 
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def edit(Poi poiInstance) {
         respond poiInstance
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def update(Poi poiInstance) {
         if (poiInstance == null) {
             notFound()
@@ -104,6 +108,7 @@ class PoiController {
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def delete(Poi poiInstance) {
 
         if (poiInstance == null) {

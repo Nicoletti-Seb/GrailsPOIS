@@ -3,12 +3,13 @@ package com.projetpois.poi
 import com.projetpois.picture.Picture
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'])
 class CategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

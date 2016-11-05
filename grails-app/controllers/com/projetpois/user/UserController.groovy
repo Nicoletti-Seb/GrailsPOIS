@@ -1,12 +1,13 @@
 package com.projetpois.user
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.security.access.prepost.PreAuthorize
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'])
 class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -16,6 +17,7 @@ class UserController {
         respond User.list(params), model:[userInstanceCount: User.count()]
     }
 
+    @PreAuthorize("isAuthenticated() and principal?.username == #userInstance.username")
     def show(User userInstance) {
         respond userInstance
     }

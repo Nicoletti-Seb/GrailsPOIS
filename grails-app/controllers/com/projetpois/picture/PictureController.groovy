@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus
 import static org.springframework.http.HttpStatus.NO_CONTENT
 
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'])
 class PictureController {
 
     static allowedMethods = [delete: "DELETE"]
