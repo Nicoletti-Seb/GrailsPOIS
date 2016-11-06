@@ -62,17 +62,17 @@
                 </div>
             </g:if>
 
-            <!--<g:if test="${userInstance?.password}">
-                <div class="form-group">
-                    <label for="password-label" class="col-sm-2 col-sm-offset-3">
-                        <g:message code="user.password.label" default="Password"/>
-                    </label>
+        <!--<g:if test="${userInstance?.password}">
+            <div class="form-group">
+                <label for="password-label" class="col-sm-2 col-sm-offset-3">
+            <g:message code="user.password.label" default="Password"/>
+            </label>
 
-                    <div class="col-sm-4">
-                        <g:fieldValue bean="${userInstance}" field="password"/>
-                    </div>
-                </div>
-            </g:if>-->
+            <div class="col-sm-4">
+            <g:fieldValue bean="${userInstance}" field="password"/>
+            </div>
+        </div>
+        </g:if>-->
 
             <g:if test="${userInstance?.accountExpired}">
                 <div class="form-group">
@@ -98,17 +98,17 @@
                 </div>
             </g:if>
 
-            <g:if test="${userInstance?.enabled}">
-                <div class="form-group">
-                    <label for="password-label" class="col-sm-2 col-sm-offset-3">
-                        <g:message code="user.enabled.label" default="Enabled"/>
-                    </label>
+        <!--<g:if test="${userInstance?.enabled}">
+            <div class="form-group">
+                <label for="password-label" class="col-sm-2 col-sm-offset-3">
+            <g:message code="user.enabled.label" default="Enabled"/>
+            </label>
 
-                    <div class="col-sm-4">
-                        <g:formatBoolean boolean="${userInstance?.enabled}"/>
-                    </div>
-                </div>
-            </g:if>
+            <div class="col-sm-4">
+            <g:formatBoolean boolean="${userInstance?.enabled}"/>
+            </div>
+        </div>
+        </g:if>-->
 
             <g:if test="${userInstance?.passwordExpired}">
                 <div class="form-group">
@@ -124,13 +124,40 @@
 
             <g:if test="${userInstance?.pois}">
                 <div class="form-group">
-                    <label for="pois-label" class="col-sm-2 col-sm-offset-3">
+                    <div class="col-sm- col-sm-offset-2">
+                        <!--<label for="pois-label" class="col-sm-2 col-sm-offset-3">
                         <g:message code="user.pois.label" default="Pois"/>
-                    </label>
+                    </label>-->
 
-                    <g:each in="${userInstance.pois}" var="p">
-                        <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link> /
-                    </g:each>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+
+                                <g:sortableColumn property="name"
+                                                  title="${message(code: 'poi.name.label', default: 'Name')}"/>
+
+                                <g:sortableColumn property="address"
+                                                  title="${message(code: 'poi.address.label', default: 'Address')}"/>
+
+                                <th><g:message code="poi.category.label" default="Category"/></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each in="${userInstance.pois}" var="poiInstance">
+                                <tr>
+                                    <td><g:link controller="poi" action="show"
+                                                id="${poiInstance.id}">${fieldValue(bean: poiInstance, field: "name")}</g:link></td>
+
+                                    <td>${fieldValue(bean: poiInstance, field: "address")}</td>
+
+                                    <td><g:link controller="category" action="show" id="${poiInstance.category.id}">
+                                        ${fieldValue(bean: poiInstance, field: "category.name")}
+                                    </g:link></td>
+                                </tr>
+                            </g:each>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </g:if>
 
@@ -143,8 +170,8 @@
 
                             <sec:ifAnyGranted roles="ROLE_ADMIN">
                                 <g:actionSubmit class="btn btn-default" action="delete"
-                                            value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                                            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                                                value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                                                onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
                             </sec:ifAnyGranted>
                         </fieldset>
                     </g:form>

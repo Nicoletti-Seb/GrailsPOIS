@@ -86,22 +86,62 @@
     </div>
 </div>
 
-<div class="form-group ${hasErrors(bean: userInstance, field: 'pois', 'error')} ">
+<div class="form-group">
     <label for="pois" class="col-sm-3 control-label">
         <g:message code="user.pois.label" default="Pois"/>
     </label>
 
     <div class="col-sm-4">
-        <ul class="one-to-many">
-            <g:each in="${userInstance?.pois ?}" var="p">
-                <li><g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-            </g:each>
-            <li class="add">
-                <g:link controller="poi" action="create"
-                        params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
-            </li>
-        </ul>
+        <g:link name="pois" class="btn btn-default btn-success" controller="poi" action="create"
+                params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
     </div>
+</div>
+
+<g:if test="${userInstance?.pois}">
+    <div class="form-group ${hasErrors(bean: userInstance, field: 'pois', 'error')} ">
+        <div class="col-sm- col-sm-offset-2">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+
+                    <g:sortableColumn property="name"
+                                      title="${message(code: 'poi.name.label', default: 'Name')}"/>
+
+                    <g:sortableColumn property="address"
+                                      title="${message(code: 'poi.address.label', default: 'Address')}"/>
+
+                    <th><g:message code="poi.category.label" default="Category"/></th>
+                </tr>
+                </thead>
+                <tbody>
+                <g:each in="${userInstance.pois}" var="poiInstance">
+                    <tr>
+                        <td><g:link controller="poi" action="show"
+                                    id="${poiInstance.id}">${fieldValue(bean: poiInstance, field: "name")}</g:link></td>
+
+                        <td>${fieldValue(bean: poiInstance, field: "address")}</td>
+
+                        <td><g:link controller="category" action="show" id="${poiInstance.category.id}">
+                            ${fieldValue(bean: poiInstance, field: "category.name")}
+                        </g:link></td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</g:if>
+
+<!--<div class="col-sm-4">
+<ul class="one-to-many">
+<g:each in="${userInstance?.pois ?}" var="p">
+    <li><g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add"><g:link controller="poi" action="create"
+                        params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
+</li>
+</ul>
+</div>-->
 
 </div>
 
