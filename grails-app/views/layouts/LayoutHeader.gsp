@@ -7,15 +7,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
+            <sec:ifLoggedIn>
                 <g:link class="navbar-brand" controller="app"
                         action="index">${grails.util.Metadata.current.getApplicationName()}</g:link>
+            </sec:ifLoggedIn>
+            <sec:ifNotLoggedIn>
+                <span class="navbar-brand">${grails.util.Metadata.current.getApplicationName()}</span>
+            </sec:ifNotLoggedIn>
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><g:link controller="poi" action="index">POI</g:link></li>
-                    <li><g:link controller="category" action="index">Catégories</g:link></li>
-                    <li><g:link controller="user" action="index">Utilisateurs</g:link></li>
+                    <sec:ifLoggedIn>
+                        <li><g:link controller="poi" action="index">POI</g:link></li>
+                        <li><g:link controller="category" action="index">Catégories</g:link></li>
+                        <li><g:link controller="user" action="index">Utilisateurs</g:link></li>
+                    </sec:ifLoggedIn>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <sec:ifLoggedIn>

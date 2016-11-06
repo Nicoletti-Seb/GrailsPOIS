@@ -123,6 +123,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.projetpois
 grails.plugin.springsecurity.authority.className = 'com.projetpois.user.Role'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/app'
+grails.plugin.springsecurity.controllerAnnotations.
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],

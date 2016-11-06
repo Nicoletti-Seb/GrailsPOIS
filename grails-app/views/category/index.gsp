@@ -13,11 +13,13 @@
         <h1>
             <g:message code="default.list.label" args="[entityName]"/>
 
-            <g:link class="create" action="create">
-                <button type="button" class="btn btn-sm btn-primary">
-                    <g:message code="default.new.label" args="[entityName]"/>
-                </button>
-            </g:link>
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_MODERATOR">
+                <g:link class="create" action="create">
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <g:message code="default.new.label" args="[entityName]"/>
+                    </button>
+                </g:link>
+            </sec:ifAnyGranted>
         </h1>
     </div>
 

@@ -3,12 +3,13 @@ package com.projetpois.poi
 import com.projetpois.picture.Picture
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['isAuthenticated()'])
 class CategoryController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
@@ -26,11 +27,13 @@ class CategoryController {
         respond Category.list()
     }
 
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def create() {
         respond new Category(params)
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def save(Category categoryInstance) {
         if (categoryInstance == null) {
             notFound()
@@ -64,11 +67,13 @@ class CategoryController {
         }
     }
 
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def edit(Category categoryInstance) {
         respond categoryInstance
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def update(Category categoryInstance) {
         if (categoryInstance == null) {
             notFound()
@@ -104,6 +109,7 @@ class CategoryController {
     }
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def delete(Category categoryInstance) {
 
         if (categoryInstance == null) {

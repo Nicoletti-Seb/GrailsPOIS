@@ -1,15 +1,22 @@
 package com.projetpois.user
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.omg.CORBA.NO_PERMISSION
+import org.springframework.security.core.context.SecurityContextHolder
+
+import java.nio.file.AccessDeniedException
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+
 @Transactional(readOnly = true)
-@Secured(['permitAll'])
+@Secured(['isAuthenticated()'])
 class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -17,14 +24,16 @@ class UserController {
     }
 
     def show(User userInstance) {
-        respond userInstance
+        return [userInstance: userInstance, canEdit:canEdit()]
     }
 
+    @Secured(['ROLE_ADMIN'])
     def create() {
         respond new User(params)
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def save(User userInstance) {
         if (userInstance == null) {
             notFound()
@@ -47,12 +56,38 @@ class UserController {
         }
     }
 
+    def canEdit(User userInstance){
+        if( springSecurityService.principal.username == userInstance.username ){
+            return true;
+        }
+
+        def sessionRoles = springSecurityService.getAuthentication().getAuthorities()
+        def userRoles = userInstance.getAuthorities();
+
+        System.out.print(sessionRoles.class);
+        System.out.print(sessionRoles[0].class);
+        System.out.print(sessionRoles.contains('ROLE_ADMIN'));
+        return sessionRoles.any{it.authority == 'ROLE_ADMIN'} ||
+                ( sessionRoles.any{it.authority == 'ROLE_MODERATOR'} &&
+                        userRoles.any{it.authority == 'ROLE_USER' || it.authority == 'ROLE_MODERATOR'})
+    }
+
     def edit(User userInstance) {
+        if(!canEdit()){
+            redirect(action: "index")
+            return;
+        }
+
         respond userInstance
     }
 
     @Transactional
     def update(User userInstance) {
+        if(!canEdit()){
+            redirect(action: "index")
+            return;
+        }
+
         if (userInstance == null) {
             notFound()
             return
@@ -75,6 +110,7 @@ class UserController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def delete(User userInstance) {
 
         if (userInstance == null) {
