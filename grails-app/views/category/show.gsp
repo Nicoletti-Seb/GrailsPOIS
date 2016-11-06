@@ -93,18 +93,19 @@
                 </div>
             </g:if>
 
-
-            <div class="well">
-                <g:form url="[resource: categoryInstance, action: 'delete']" method="DELETE">
-                    <fieldset class="buttons">
-                        <g:link class="btn btn-default" action="edit" resource="${categoryInstance}"><g:message
-                                code="default.button.edit.label" default="Edit"/></g:link>
-                        <g:actionSubmit class="btn btn-default" action="delete"
-                                        value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                                        onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-                    </fieldset>
-                </g:form>
-            </div>
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_MODERATOR">
+                <div class="well">
+                    <g:form url="[resource: categoryInstance, action: 'delete']" method="DELETE">
+                        <fieldset class="buttons">
+                            <g:link class="btn btn-default" action="edit" resource="${categoryInstance}"><g:message
+                                    code="default.button.edit.label" default="Edit"/></g:link>
+                            <g:actionSubmit class="btn btn-default" action="delete"
+                                            value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                                            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+                        </fieldset>
+                    </g:form>
+                </div>
+            </sec:ifAnyGranted>
         </div>
         </div>
 </body>

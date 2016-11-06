@@ -7,14 +7,14 @@ import org.springframework.http.HttpStatus
 import static org.springframework.http.HttpStatus.NO_CONTENT
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN'])
+@Secured(['isAuthenticated()'])
 class PictureController {
 
     static allowedMethods = [delete: "DELETE"]
 
     @Transactional
+    @Secured(['ROLE_MODERATOR', 'ROLE_ADMIN'])
     def delete() {
-
         //Picture
         Picture picture = Picture.get(params.getInt("idPicture"))
         if(picture == null){
