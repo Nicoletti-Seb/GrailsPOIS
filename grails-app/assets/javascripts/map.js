@@ -5,6 +5,7 @@
 /**
  * Options
  * {
+ *      markerDraggable: boolean
  *      markerClickEvent: callback
  *      markerStartDragEvent: callback
  *      markerEndDragEvent: callback
@@ -32,7 +33,7 @@ var Map = (function ClassMap(){
             position: new google.maps.LatLng(poi.y, poi.x),
             map: this.mapApi,
             title: poi.name,
-            draggable:true,
+            draggable: this.opt.markerDraggable || false,
             infoWindow: new google.maps.InfoWindow({
                 maxWidth: 350
             })

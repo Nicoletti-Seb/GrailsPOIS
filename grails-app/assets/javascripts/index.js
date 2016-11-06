@@ -122,7 +122,8 @@ function initMap() {
 	var map = new Map(mapCanvas, {
 		markerClickEvent: onMarkerClickEvent,
 		markerStartDragEvent: onMarkerStartDragEvent,
-		markerEndDragEvent: onMarkerEndDragEvent
+		markerEndDragEvent: onMarkerEndDragEvent,
+		markerDraggable: true
 	});
 
 	//Init marker
