@@ -99,7 +99,6 @@
 
 <g:if test="${userInstance?.pois}">
     <div class="form-group ${hasErrors(bean: userInstance, field: 'pois', 'error')} ">
-        <div class="col-sm- col-sm-offset-2">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -128,20 +127,6 @@
                 </g:each>
                 </tbody>
             </table>
-        </div>
     </div>
 </g:if>
-
-<!--<div class="col-sm-4">
-<ul class="one-to-many">
-<g:each in="${userInstance?.pois ?}" var="p">
-    <li><g:link controller="poi" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add"><g:link controller="poi" action="create"
-                        params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'poi.label', default: 'Poi')])}</g:link>
-</li>
-</ul>
-</div>-->
-
-</div>
 

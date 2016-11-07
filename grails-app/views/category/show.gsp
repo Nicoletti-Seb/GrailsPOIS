@@ -92,38 +92,22 @@
         </div>
 
         <div class="col-sm-8">
-            <g:if test="${categoryInstance?.pois}">
+            <div class="index-container" id="carte-pois" data-categoryId="${categoryInstance.id}">
+                <div class="map"></div>
+            </div>
 
-                <!--<label for="pois-label" class="col-sm-2">
-                <g:message code="category.pois.label" default="Pois"/>
-                </label>
-
-                    <ul>
-                <g:each in="${categoryInstance.pois}" var="p">
-                    <li>
-                        <span class="property-value" aria-labelledby="pois-label">
-                    <g:link controller="poi" action="show" id="${p.id}">${p?.name}</g:link>
-                    </li>
-                </g:each>
-                </ul>-->
-
-                <div class="index-container" id="carte-pois" data-categoryId= ${categoryInstance.id}>
-                    <div class="map"></div>
-                </div>
-
-                <section class="hide panels">
-                    <!-- Info marker -->
-                    <section class="info-marker">
-                        <header class="info-header" >
-                            <h1 class="title"></h1>
-                        </header>
-                        <section class="info-content" >
-                            <h2 class="address"></h2>
-                            <p class="description"></p>
-                        </section>
+            <section class="hide panels">
+                <!-- Info marker -->
+                <section class="info-marker">
+                    <header class="info-header" >
+                        <h1 class="title"></h1>
+                    </header>
+                    <section class="info-content" >
+                        <h2 class="address"></h2>
+                        <p class="description"></p>
                     </section>
                 </section>
-            </g:if>
+            </section>
         </div>
     </div>
 </div>

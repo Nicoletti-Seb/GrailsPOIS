@@ -28,7 +28,7 @@
     <label for="pictures" class="col-sm-3 control-label">
         <g:message code="category.pictures.label" default="Pictures"/>
     </label>
-    <div>
+    <div class="contButtPictureLoader">
         <span class="glyphicon glyphicon-plus-sign add-picture-loader"></span>
         <span class="glyphicon glyphicon-minus-sign remove-picture-loader"></span>
     </div>

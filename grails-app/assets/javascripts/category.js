@@ -3,7 +3,7 @@
  */
 
 function initMap() {
-    var mapCanvas = document.querySelector('.index-container > .map');
+    var mapCanvas = document.querySelector('.index-container .map');
     var map = new Map(mapCanvas, {
         markerClickEvent: onMarkerClickEvent
     });

@@ -64,9 +64,6 @@ class UserController {
         def sessionRoles = springSecurityService.getAuthentication().getAuthorities()
         def userRoles = userInstance.getAuthorities();
 
-        System.out.print(sessionRoles.class);
-        System.out.print(sessionRoles[0].class);
-        System.out.print(sessionRoles.contains('ROLE_ADMIN'));
         return sessionRoles.any{it.authority == 'ROLE_ADMIN'} ||
                 ( sessionRoles.any{it.authority == 'ROLE_MODERATOR'} &&
                         userRoles.any{it.authority == 'ROLE_USER' || it.authority == 'ROLE_MODERATOR'})
